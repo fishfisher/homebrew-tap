@@ -5,20 +5,20 @@
 class AppleNotes < Formula
   desc "CLI for Apple Notes with SQLite for fast reads and AppleScript for writes"
   homepage "https://github.com/fishfisher/apple-notes"
-  version "0.2.0"
+  version "0.3.0"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/fishfisher/apple-notes/releases/download/v0.2.0/apple-notes_0.2.0_darwin_amd64.tar.gz"
-    sha256 "d6123df5c7805a6a470ff829d4344f5e9b1953849cc93efd53a301f75d938602"
+    url "https://github.com/fishfisher/apple-notes/releases/download/v0.3.0/apple-notes_0.3.0_darwin_amd64.tar.gz"
+    sha256 "ccb80811e4c456875a4636b93eb564bee1a2751cc9a710365d43bd6d3a419180"
 
     def install
       bin.install "apple-notes"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/fishfisher/apple-notes/releases/download/v0.2.0/apple-notes_0.2.0_darwin_arm64.tar.gz"
-    sha256 "26b27233ad70bd6c8040a6069be8ae28ca423eac63377e73c3d3392cd8c8bf2d"
+    url "https://github.com/fishfisher/apple-notes/releases/download/v0.3.0/apple-notes_0.3.0_darwin_arm64.tar.gz"
+    sha256 "24c7da72ec2a6d692cd25bc8f9132bbb0fd6d529a2088ebac060ee7c13b01b45"
 
     def install
       bin.install "apple-notes"
