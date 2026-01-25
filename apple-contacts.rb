@@ -5,20 +5,20 @@
 class AppleContacts < Formula
   desc "CLI for searching and querying Apple Contacts via AppleScript"
   homepage "https://github.com/fishfisher/apple-contacts"
-  version "0.1.0"
+  version "0.1.1"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/fishfisher/apple-contacts/releases/download/v0.1.0/apple-contacts_0.1.0_darwin_amd64.tar.gz"
-    sha256 "272ca317a1fc7fcebb84d26f38804de5412be4abfc6fcb57cb224e7cd5babfc6"
+    url "https://github.com/fishfisher/apple-contacts/releases/download/v0.1.1/apple-contacts_0.1.1_darwin_amd64.tar.gz"
+    sha256 "9dda2e4c4b93f824c77c7285c90f3481965eec464e51ea369e5ffcde0c5872d4"
 
     def install
       bin.install "apple-contacts"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/fishfisher/apple-contacts/releases/download/v0.1.0/apple-contacts_0.1.0_darwin_arm64.tar.gz"
-    sha256 "26a8b0e2c7e4db249f520384f65ee7e7f005738fed65046c8b9167d9dca1236a"
+    url "https://github.com/fishfisher/apple-contacts/releases/download/v0.1.1/apple-contacts_0.1.1_darwin_arm64.tar.gz"
+    sha256 "344adc7aa6c2e18d5ff1d91382ed3bba1768b94e35933462756f66bb62ccbfdf"
 
     def install
       bin.install "apple-contacts"
