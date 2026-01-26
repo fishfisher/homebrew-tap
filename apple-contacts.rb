@@ -7,7 +7,6 @@ class AppleContacts < Formula
   head "https://github.com/fishfisher/apple-contacts.git", branch: "main"
 
   depends_on :macos
-  depends_on xcode: ["15.0", :build]
 
   def install
     system "swift", "build", "-c", "release", "--disable-sandbox"
