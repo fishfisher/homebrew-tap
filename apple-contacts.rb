@@ -1,16 +1,17 @@
 class AppleContacts < Formula
   desc "CLI for searching and querying Apple Contacts using native Contacts Framework"
   homepage "https://github.com/fishfisher/apple-contacts"
-  url "https://github.com/fishfisher/apple-contacts/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "3e2c9cc19296b811cd9a1a962e821990767816084badd949655b7336f220128f"
+  version "0.2.0"
   license "MIT"
-  head "https://github.com/fishfisher/apple-contacts.git", branch: "main"
 
   depends_on :macos
+  depends_on arch: :arm64
+
+  url "https://github.com/fishfisher/apple-contacts/releases/download/v0.2.0/apple-contacts-darwin-arm64.tar.gz"
+  sha256 "1eee183558108b11843e9e0e5053137a2519dab94f44846b0aa5b345cb3b4be4"
 
   def install
-    system "swift", "build", "-c", "release", "--disable-sandbox"
-    bin.install ".build/release/apple-contacts"
+    bin.install "apple-contacts"
   end
 
   test do
