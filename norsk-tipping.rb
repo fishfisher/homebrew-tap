@@ -1,19 +1,19 @@
 class NorskTipping < Formula
   desc "CLI for buying lottery tickets from Norsk Tipping"
   homepage "https://github.com/fishfisher/norsk-tipping-cli"
-  version "1.0.2"
+  version "1.0.3"
   license "MIT"
 
   depends_on :macos
 
   on_arm do
-    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.2/norsk-tipping-darwin-arm64"
-    sha256 "eb3ebb70460eb69c2c870c869958d544c83c58e5c70df07f96ec07200fe31f6d"
+    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.3/norsk-tipping-darwin-arm64"
+    sha256 "eab195d496df1f037f3a0ae24d33efd42f78f9ff37488c51dbe88f7a0167c220"
   end
 
   on_intel do
-    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.2/norsk-tipping-darwin-amd64"
-    sha256 "cbfe82585550c8711dfd760a998aca0aa578743ff7fbcedeb136b1c3bdc97fb3"
+    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.3/norsk-tipping-darwin-amd64"
+    sha256 "ad2164ac1786e63f7daeb437c1f6dc640cf5bc8da27e51f00c89150561b24951"
   end
 
   def install
