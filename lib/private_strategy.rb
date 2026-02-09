@@ -1,9 +1,6 @@
 require "download_strategy"
 
 class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
-  require "utils/formatter"
-  require "utils/github"
-
   def initialize(url, name, version, **meta)
     super
     parse_url_pattern
@@ -24,23 +21,17 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
   private
 
   def _fetch(url:, resolved_url:, timeout:)
-    curl_download download_url, to: temporary_path, timeout: timeout
+    curl_download download_url, to: temporary_path
   end
 
   def set_github_token
-    @github_token = GitHub::API.credentials
+    @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
+    @github_token ||= `gh auth token 2>/dev/null`.strip
+    @github_token = nil if @github_token.to_s.empty?
     unless @github_token
       raise CurlDownloadStrategyError,
-            "GitHub credentials required. Set HOMEBREW_GITHUB_API_TOKEN or run: gh auth login"
+            "GitHub token required. Set HOMEBREW_GITHUB_API_TOKEN or run: gh auth login"
     end
-    validate_github_repository_access!
-  end
-
-  def validate_github_repository_access!
-    GitHub.repository(@owner, @repo)
-  rescue GitHub::HTTPNotFoundError
-    raise CurlDownloadStrategyError,
-          "Credentials cannot access #{@owner}/#{@repo}. Check token permissions."
   end
 end
 
@@ -54,7 +45,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
   end
 
   def download_url
-    "https://api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
+    "https://#{@github_token}@api.github.com/repos/#{@owner}/#{@repo}/releases/assets/#{asset_id}"
   end
 
   def resolve_url_basename_time_file_size(url, timeout: nil)
@@ -66,9 +57,7 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
   def _fetch(url:, resolved_url:, timeout:)
     curl_download download_url,
                   "--header", "Accept: application/octet-stream",
-                  "--header", "Authorization: token #{@github_token}",
-                  to: temporary_path,
-                  timeout: timeout
+                  to: temporary_path
   end
 
   def asset_id
@@ -78,11 +67,14 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
   def resolve_asset_id
     release_metadata = fetch_release_metadata
     assets = release_metadata["assets"].select { |a| a["name"] == @filename }
-    raise CurlDownloadStrategyError, "Asset file not found." if assets.empty?
+    raise CurlDownloadStrategyError, "Asset '#{@filename}' not found in release #{@tag}." if assets.empty?
     assets.first["id"]
   end
 
   def fetch_release_metadata
-    GitHub.get_release(@owner, @repo, @tag)
+    require "json"
+    url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}"
+    output = `curl -sS -H "Authorization: token #{@github_token}" -H "Accept: application/vnd.github+json" "#{url}" 2>/dev/null`
+    JSON.parse(output)
   end
 end
