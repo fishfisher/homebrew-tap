@@ -24,9 +24,26 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
     curl_download download_url, to: temporary_path
   end
 
+  def find_gh
+    paths = %w[
+      /opt/homebrew/bin/gh
+      /usr/local/bin/gh
+      /usr/bin/gh
+    ]
+    # Also check ~/.local/bin/gh (wrapper script)
+    home = ENV["HOME"] || File.expand_path("~")
+    paths.unshift("#{home}/.local/bin/gh")
+    paths.find { |p| File.executable?(p) }
+  end
+
   def set_github_token
     @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
-    @github_token ||= `gh auth token 2>/dev/null`.strip
+    if @github_token.to_s.empty?
+      gh = find_gh
+      if gh
+        @github_token = `#{gh} auth token 2>/dev/null`.strip
+      end
+    end
     @github_token = nil if @github_token.to_s.empty?
     unless @github_token
       raise CurlDownloadStrategyError,
@@ -73,8 +90,8 @@ class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDo
 
   def fetch_release_metadata
     require "json"
-    url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}"
-    output = `curl -sS -H "Authorization: token #{@github_token}" -H "Accept: application/vnd.github+json" "#{url}" 2>/dev/null`
+    release_url = "https://api.github.com/repos/#{@owner}/#{@repo}/releases/tags/#{@tag}"
+    output = `curl -sS -H "Authorization: token #{@github_token}" -H "Accept: application/vnd.github+json" "#{release_url}" 2>/dev/null`
     JSON.parse(output)
   end
 end
