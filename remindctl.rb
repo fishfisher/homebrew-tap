@@ -3,15 +3,15 @@ require_relative "lib/private_strategy"
 class Remindctl < Formula
   desc "CLI for managing Apple Reminders from the terminal"
   homepage "https://github.com/fishfisher/remindctl"
-  version "0.2.0"
+  version "0.2.1"
   license "MIT"
 
   depends_on :macos
   depends_on arch: :arm64
 
-  url "https://github.com/fishfisher/remindctl/releases/download/v0.2.0/remindctl-macos.zip",
+  url "https://github.com/fishfisher/remindctl/releases/download/v0.2.1/remindctl-macos.zip",
       using: GitHubPrivateRepositoryReleaseDownloadStrategy
-  sha256 "767b5dd49040c11a5935cb22024a932c7f34b62c31a19cd28afa266e542ae41e"
+  sha256 "e05a44486e31f19d9bcdaab005e4ec05cb099cbd97f3635d3bfb824a645c382a"
 
   def install
     bin.install "remindctl"
