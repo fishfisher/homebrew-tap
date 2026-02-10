@@ -3,21 +3,21 @@ require_relative "lib/private_strategy"
 class Oda < Formula
   desc "CLI for ordering groceries from Oda.com"
   homepage "https://github.com/fishfisher/oda-cli"
-  version "1.0.4"
+  version "1.1.0"
   license "MIT"
 
   depends_on :macos
 
   on_arm do
-    url "https://github.com/fishfisher/oda-cli/releases/download/v1.0.4/oda-darwin-arm64",
+    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.0/oda-darwin-arm64",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
-    sha256 "5196cd993d10ded07bde914fd2f049b8b58a8d2a520ffedcbf54d1b0f3c55a62"
+    sha256 "22ea3c227dce8d28ec3dce379c83a539e080acbe763d1dd72316874c1839187f"
   end
 
   on_intel do
-    url "https://github.com/fishfisher/oda-cli/releases/download/v1.0.4/oda-darwin-amd64",
+    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.0/oda-darwin-amd64",
         using: GitHubPrivateRepositoryReleaseDownloadStrategy
-    sha256 "2a7874763e2d323e437b0ba046448d5953e0c6d3cb8661eb615e2b24a811348d"
+    sha256 "0dd86460a3e117bb1e7efc3da016481466e91b4b6195af7c9b97a4d50dbdf0c8"
   end
 
   def install
