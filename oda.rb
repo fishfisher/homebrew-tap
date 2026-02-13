@@ -10,13 +10,13 @@ class Oda < Formula
 
   on_arm do
     url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.0/oda-darwin-arm64",
-        using: GitHubPrivateRepositoryReleaseDownloadStrategy
+        using: FishfisherPrivateReleaseDownloadStrategy
     sha256 "22ea3c227dce8d28ec3dce379c83a539e080acbe763d1dd72316874c1839187f"
   end
 
   on_intel do
     url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.0/oda-darwin-amd64",
-        using: GitHubPrivateRepositoryReleaseDownloadStrategy
+        using: FishfisherPrivateReleaseDownloadStrategy
     sha256 "0dd86460a3e117bb1e7efc3da016481466e91b4b6195af7c9b97a4d50dbdf0c8"
   end
 

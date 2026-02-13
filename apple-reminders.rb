@@ -10,7 +10,7 @@ class AppleReminders < Formula
   depends_on arch: :arm64
 
   url "https://github.com/fishfisher/remindctl/releases/download/v0.3.2/apple-reminders-macos.zip",
-      using: GitHubPrivateRepositoryReleaseDownloadStrategy
+      using: FishfisherPrivateReleaseDownloadStrategy
   sha256 "c9d3dea6a0c5e6cc50e67245f72100da1ec5de04849f4c4bc7fd250b5c2f560c"
 
   def install

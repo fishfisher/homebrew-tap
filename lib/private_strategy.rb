@@ -1,6 +1,11 @@
 require "download_strategy"
 
-class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
+# Unique class names to avoid collision with other taps that define
+# GitHubPrivateRepositoryDownloadStrategy / ...ReleaseDownloadStrategy.
+# Uses `gh auth token --user <owner>` to pick the correct GitHub account
+# based on the repo owner parsed from the URL.
+
+class FishfisherPrivateDownloadStrategy < CurlDownloadStrategy
   def initialize(url, name, version, **meta)
     super
     parse_url_pattern
@@ -24,27 +29,17 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
     curl_download download_url, to: temporary_path
   end
 
-  def find_gh
-    paths = %w[
-      /opt/homebrew/bin/gh
-      /usr/local/bin/gh
-      /usr/bin/gh
-    ]
-    # Also check ~/.local/bin/gh (wrapper script)
-    home = ENV["HOME"] || File.expand_path("~")
-    paths.unshift("#{home}/.local/bin/gh")
-    paths.find { |p| File.executable?(p) }
-  end
-
   def set_github_token
     @github_token = ENV["HOMEBREW_GITHUB_API_TOKEN"]
-    if @github_token.to_s.empty?
-      gh = find_gh
-      if gh
-        @github_token = `#{gh} auth token 2>/dev/null`.strip
-      end
+    return unless @github_token.to_s.empty?
+
+    gh = %w[/opt/homebrew/bin/gh /usr/local/bin/gh /usr/bin/gh].find { |p| File.executable?(p) }
+    if gh
+      # Try owner-specific token first, fall back to active account
+      token = `#{gh} auth token --user #{@owner} 2>/dev/null`.strip
+      token = `#{gh} auth token 2>/dev/null`.strip if token.empty?
+      @github_token = token unless token.empty?
     end
-    @github_token = nil if @github_token.to_s.empty?
     unless @github_token
       raise CurlDownloadStrategyError,
             "GitHub token required. Set HOMEBREW_GITHUB_API_TOKEN or run: gh auth login"
@@ -52,7 +47,7 @@ class GitHubPrivateRepositoryDownloadStrategy < CurlDownloadStrategy
   end
 end
 
-class GitHubPrivateRepositoryReleaseDownloadStrategy < GitHubPrivateRepositoryDownloadStrategy
+class FishfisherPrivateReleaseDownloadStrategy < FishfisherPrivateDownloadStrategy
   def parse_url_pattern
     url_pattern = %r{https://github.com/([^/]+)/([^/]+)/releases/download/([^/]+)/(\S+)}
     unless @url =~ url_pattern
