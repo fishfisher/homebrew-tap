@@ -3,15 +3,15 @@ require_relative "lib/private_strategy"
 class Oda < Formula
   desc "CLI for ordering groceries from Oda.com"
   homepage "https://github.com/fishfisher/oda-cli"
-  version "1.1.0"
+  version "1.1.1"
   license "MIT"
 
   depends_on :macos
 
   on_arm do
-    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.0/oda-darwin-arm64",
+    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.1/oda-darwin-arm64",
         using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "22ea3c227dce8d28ec3dce379c83a539e080acbe763d1dd72316874c1839187f"
+    sha256 "0ca713b7ada2bcea27e5758009391981efb4708ba52e55b204286893d29b2181"
   end
 
   on_intel do
