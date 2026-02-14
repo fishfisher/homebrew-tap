@@ -1,14 +1,14 @@
 class AppleContacts < Formula
   desc "CLI for searching and querying Apple Contacts using native Contacts Framework"
   homepage "https://github.com/fishfisher/apple-contacts"
-  version "0.3.2"
+  version "0.3.3"
   license "MIT"
 
   depends_on :macos
   depends_on arch: :arm64
 
-  url "https://github.com/fishfisher/apple-contacts/releases/download/v0.3.2/apple-contacts-darwin-arm64.zip"
-  sha256 "3e0e7eb2aa39a6ff0c019321b727181b91a1af1ac28a85d91c9c91eff0315345"
+  url "https://github.com/fishfisher/apple-contacts/releases/download/v0.3.3/apple-contacts-darwin-arm64.zip"
+  sha256 "93bc3e73a307f00ecae725402488a3f4edf0c30f0c7ede5216a9bf0642676460"
 
   def install
     bin.install "apple-contacts"
