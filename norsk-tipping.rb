@@ -3,15 +3,15 @@ require_relative "lib/private_strategy"
 class NorskTipping < Formula
   desc "CLI for buying lottery tickets from Norsk Tipping"
   homepage "https://github.com/fishfisher/norsk-tipping-cli"
-  version "1.0.6"
+  version "1.0.7"
   license "MIT"
 
   depends_on :macos
 
   on_arm do
-    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.6/norsk-tipping-darwin-arm64",
+    url "https://github.com/fishfisher/norsk-tipping-cli/releases/download/v1.0.7/norsk-tipping-darwin-arm64",
         using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "34a5686d18bf88aeb6a343007b43fdf6fb820de2724305f56588b7f1463fabb8"
+    sha256 "168d0a6fe2927039638f1d1dc9fa335b800b913aef317cf488fa660eaf79d338"
   end
 
   on_intel do
