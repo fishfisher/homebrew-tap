@@ -6,20 +6,20 @@ require_relative "lib/private_strategy"
 class Oda < Formula
   desc "CLI for ordering groceries from Oda.com"
   homepage "https://github.com/fishfisher/oda-cli"
-  version "1.1.3"
+  version "1.2.0"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.3/oda-cli-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "9ddd69cb2f1a4074dab99c7cdfb37a157b9674a2d34ef74303a130eb64b154b4"
+    url "https://github.com/fishfisher/oda-cli/releases/download/v1.2.0/oda-cli-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "500638f9a6810e1940ae64c8a3a2dc6cad8805c0f4c9e2d6ddfc2b85526c9985"
 
     def install
       bin.install Dir["oda*"].first => "oda"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/fishfisher/oda-cli/releases/download/v1.1.3/oda-cli-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "f4a6b67023418bf8a235e0e2e3fbcb9238e4ba0d6eda6e14ff4dfa97415707f8"
+    url "https://github.com/fishfisher/oda-cli/releases/download/v1.2.0/oda-cli-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "a4da845f19288181a1f59c317213e2bc950d158204bafbd51a0d706f47d10c44"
 
     def install
       bin.install Dir["oda*"].first => "oda"
