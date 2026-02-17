@@ -3,15 +3,15 @@ require_relative "lib/private_strategy"
 class AppleReminders < Formula
   desc "CLI for managing Apple Reminders from the terminal"
   homepage "https://github.com/fishfisher/apple-reminders"
-  version "1.0.0"
+  version "1.1.0"
   license "MIT"
 
   depends_on :macos
   depends_on arch: :arm64
 
-  url "https://github.com/fishfisher/remindctl/releases/download/v1.0.0/apple-reminders-macos.zip",
+  url "https://github.com/fishfisher/remindctl/releases/download/v1.1.0/apple-reminders-macos.zip",
       using: FishfisherPrivateReleaseDownloadStrategy
-  sha256 "0f98755ffd960c9adbdfdc354b2125788b029ef45021c30b82bc7759586b78f7"
+  sha256 "fbc0d4e80aa3421bf637864450350350b4e3ca11e56390be0ee99f9681fb5b8c"
 
   def install
     bin.install "apple-reminders"
