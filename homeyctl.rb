@@ -6,20 +6,20 @@ require_relative "lib/private_strategy"
 class Homeyctl < Formula
   desc "CLI for controlling Homey smart home"
   homepage "https://github.com/fishfisher/homeyctl"
-  version "1.3.1"
+  version "1.3.2"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/fishfisher/homeyctl/releases/download/v1.3.1/homeyctl-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "f7852ecb29b5d3e316d220c7e5dc5b20a96fb34f872c1a6f8eb534707ff3ac91"
+    url "https://github.com/fishfisher/homeyctl/releases/download/v1.3.2/homeyctl-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "4c6427ed1dd4d7b6afcda382154b3c9b38de3c47e58676af99f7ea1915ae821b"
 
     def install
       bin.install Dir["homeyctl*"].first => "homeyctl"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/fishfisher/homeyctl/releases/download/v1.3.1/homeyctl-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "484a2a38cf1a82d5148d1b2fc6301e1ff013e231379d537081e3edc11140d5d3"
+    url "https://github.com/fishfisher/homeyctl/releases/download/v1.3.2/homeyctl-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "e7d2d0520cb96789b088ac20fc080c22609d4f9dc285ec8b88e2837d8eb03ed0"
 
     def install
       bin.install Dir["homeyctl*"].first => "homeyctl"
