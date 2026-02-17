@@ -3,15 +3,15 @@ require_relative "lib/private_strategy"
 class Homeyctl < Formula
   desc "CLI for controlling Homey smart home"
   homepage "https://github.com/fishfisher/homeyctl"
-  version "1.2.0"
+  version "1.2.1"
   license "MIT"
 
   if Hardware::CPU.arm?
-    url "https://github.com/fishfisher/homeyctl/releases/download/v1.2.0/homeyctl-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "024df630a7ed8e9b4216a120080881aa6aa8fa6880b17e505239005265c9b847"
+    url "https://github.com/fishfisher/homeyctl/releases/download/v1.2.1/homeyctl-darwin-arm64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "53ccc8fa1935edfd6300942484037977f4da607a582eb9473ce73721d873d84e"
   else
-    url "https://github.com/fishfisher/homeyctl/releases/download/v1.2.0/homeyctl-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
-    sha256 "d691c6a9585311a00e2f8e03c24e7bc599e2c3f25eaca2d527929486363bfb3b"
+    url "https://github.com/fishfisher/homeyctl/releases/download/v1.2.1/homeyctl-darwin-amd64", using: FishfisherPrivateReleaseDownloadStrategy
+    sha256 "0446f808a95889c9b092508275be431c3026850cd80607b2098669291f33662d"
   end
 
   def install
