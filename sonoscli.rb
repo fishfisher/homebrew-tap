@@ -6,23 +6,21 @@ require_relative "lib/private_strategy"
 class Sonoscli < Formula
   desc "Control Sonos speakers from the command line"
   homepage "https://github.com/fishfisher/sonoscli"
-  version "0.2.1"
+  version "0.2.2"
   license "MIT"
-
-  depends_on "macos"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.1/sonoscli_0.2.1_darwin_amd64.zip", using: FishfisherPrivateReleaseDownloadStrategy
-      sha256 "c734bbd003e5edbfffe5574d63c3c7e9c3b5d704f18a09a9ca841e7904e2d01b"
+      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.2/sonoscli_0.2.2_darwin_amd64.zip", using: FishfisherPrivateReleaseDownloadStrategy
+      sha256 "430048912484c5e3542685912344e9ef527ae80466a8ceb9ee498453e494b47e"
 
       def install
         bin.install "sonos"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.1/sonoscli_0.2.1_darwin_arm64.zip", using: FishfisherPrivateReleaseDownloadStrategy
-      sha256 "00def2204c1d89cb0b18d80c277cbf666def9ce2c5b7d8a32a0d54c3d582d140"
+      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.2/sonoscli_0.2.2_darwin_arm64.zip", using: FishfisherPrivateReleaseDownloadStrategy
+      sha256 "8d0e92be5c0b580b83d46726b20a79dd136c84cea130de5bea77f412d7d0255b"
 
       def install
         bin.install "sonos"
@@ -32,15 +30,15 @@ class Sonoscli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.1/sonoscli_0.2.1_linux_amd64.tar.gz", using: FishfisherPrivateReleaseDownloadStrategy
-      sha256 "1cb66256bc383b6ea1c86dfebc1b7386f7a8e5a489314cbab3090f39306e41e4"
+      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.2/sonoscli_0.2.2_linux_amd64.tar.gz", using: FishfisherPrivateReleaseDownloadStrategy
+      sha256 "9515fd4c32f0c077a1b49a69b79bde4e074645898dc7c83d55ee3f629b25c410"
       def install
         bin.install "sonos"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.1/sonoscli_0.2.1_linux_arm64.tar.gz", using: FishfisherPrivateReleaseDownloadStrategy
-      sha256 "b463daee6f2af98e7aa5f6ff1ba6d2229e6dba1efa52f4647065803245225fa5"
+      url "https://github.com/fishfisher/sonoscli/releases/download/v0.2.2/sonoscli_0.2.2_linux_arm64.tar.gz", using: FishfisherPrivateReleaseDownloadStrategy
+      sha256 "488247a5085b750f5e2217bbbfab7f1e6169e0ffa5ff9b19a6ec883327523fc3"
       def install
         bin.install "sonos"
       end
