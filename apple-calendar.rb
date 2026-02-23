@@ -2,14 +2,14 @@ require_relative "lib/private_strategy"
 class AppleCalendar < Formula
   desc "CLI for managing Apple Calendar events from the command line"
   homepage "https://github.com/fishfisher/apple-calendar-cli"
-  version "2.0.0"
+  version "2.0.1"
   license "MIT"
 
   depends_on :macos
   depends_on "node"
 
-  url "https://github.com/fishfisher/apple-calendar-cli/releases/download/v2.0.0/fishfisher-apple-calendar-2.0.0.tgz", using: FishfisherPrivateReleaseDownloadStrategy
-  sha256 "7a6e907a30efe4560caaf5e49f8746fd0fccb80afa7c9eab0236e5b839b6e03d"
+  url "https://github.com/fishfisher/apple-calendar-cli/releases/download/v2.0.1/fishfisher-apple-calendar-2.0.1.tgz", using: FishfisherPrivateReleaseDownloadStrategy
+  sha256 "4b326cbcd149ea85c5c909459fad5d87bdc79ce69460f57c11a97e2e51963c58"
 
   def install
     system "npm", "install", *std_npm_args
